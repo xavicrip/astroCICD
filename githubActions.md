@@ -98,7 +98,7 @@ Opciones disponibles:
 
 ### Método 2: Instalación Manual
 
-Si prefieres configurar todo manualmente:
+Si prefieres configurar todo manualmente:dis
 
 ```bash
 # Crear directorio del proyecto
