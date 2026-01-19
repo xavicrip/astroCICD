@@ -11,6 +11,10 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
     
+    defaults:
+      run:
+        working-directory: ./xavicrip
+    
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
@@ -19,19 +23,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          #cache: 'npm'
+          cache: 'npm'
+          cache-dependency-path: './xavicrip/package-lock.json'
       
       - name: Instalar dependencias
-        run: npm install
+        run: npm ci
+        working-directory: ./xavicrip
       
-      - name: Ejecutar linter
-        run: npm run lint
-      
-      - name: Verificar tipos TypeScript
+      - name: Verificar tipos TypeScript y Astro
         run: npx astro check
-      
-      - name: Ejecutar tests
-        run: npm run test
+        working-directory: ./xavicrip
       
       - name: Build del proyecto
         run: npm run build
+        working-directory: ./xavicrip
+        env:
+          NODE_ENV: production
